@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Hello World</title>
+</h:head>
+<h:body>
+	<h:form >
+		<h:panelGrid columns="2">
+			<h:outputLabel value="ID:"/>
+			<h:inputText value="#{usuarioController.usuario.id}"/>
+			<h:outputLabel value="Nome:"/>
+			<h:inputText value="#{usuarioController.usuario.nome}"/>
+			<h:outputLabel value="Login:"/>
+			<h:inputText value="#{usuarioController.usuario.login}"/>
+			<h:outputLabel value="Senha:"/>
+			<h:inputSecret value="#{usuarioController.usuario.senha}"/>
+			<h:outputLabel value="Email:"/>
+			<h:inputText value="#{usuarioController.usuario.email}"/>
+		</h:panelGrid>
+			<h:commandButton value="Entrar" action="#{usuarioController.incluir}"/>
+			<h:commandButton value="Remover" action="#{usuarioController.remover}"/>
+			<h:commandButton value="Limpar" action="#{usuarioController.limpar}"/>
+		<h:messages style="color:red;margin:8px;" />
+	</h:form>
+	
+	<h:form>
+		<h:dataTable value="#{usuarioController.listaUsuario}" var="lu">
+			<h:column>
+				<f:facet name="header">ID</f:facet>            
+				<h:outputLabel value="#{lu.id}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputLabel value="#{lu.nome}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Login</f:facet>
+				<h:outputLabel value="#{lu.login}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Senha</f:facet>
+				<h:outputLabel value="#{lu.senha}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputLabel value="#{lu.email}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandLink value="Editar" 
+					actionListener="#{usuarioController.editar(lu)}"/>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	
+</h:body>
+</html>
